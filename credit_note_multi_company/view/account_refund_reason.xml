@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+         <record model="ir.ui.view" id="account_credit_refund_reason_view">
+            <field name="name">account.refund.reason.form</field>
+            <field name="model">account.refund.reason</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Refund Reason">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="reason"/>
+                            <field name="refund_percent"/>
+                        </group>
+                    </group>
+                    </sheet> 
+                </form>
+            </field>
+        </record>
+
+
+        <record id="account_credit_refund_tree_view" model="ir.ui.view">
+            <field name="name">account.refund.reason.tree</field>
+            <field name="model">account.refund.reason</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Refund Reason">
+                    <field name="reason"/>
+                    <field name="refund_percent"/>       
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_account_credit_refund" model="ir.actions.act_window">
+            <field name="name">Account Credit Refund</field>
+            <field name="res_model">account.refund.reason</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account_credit_refund_tree_view"/>
+        </record>
+
+        <menuitem id="account_credit_refund_menu" name="Refund Reason" 
+            parent="account.account_invoicing_menu" 
+            action="action_account_credit_refund" sequence="5" />
+ 
+    </data>
+</odoo>

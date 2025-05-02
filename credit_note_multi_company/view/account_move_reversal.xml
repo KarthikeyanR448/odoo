@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="view_account_move_reversal_inherit" model="ir.ui.view">
+            <field name="name">account.move.reversal.inherit</field>
+            <field name="model">account.move.reversal</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_account_move_reversal" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/group" position="after">
+                    <group></group>
+                    <button name="select_all_product" string="Select All" type="object"/>
+                    <field name="account_move_reversal_line" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="select_product"/>
+                            <field name="move_line_id" column_invisible="True"/>
+                            <field name="product_id"/>
+                            <field name="account_id" column_invisible="True"/>
+                            <field name="quantity"/>
+                            <field name="uom_id" column_invisible="True"/>
+                            <field name="price_unit"/>
+                            <field name="reason_id"/>
+                            <field name="refund_percent"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

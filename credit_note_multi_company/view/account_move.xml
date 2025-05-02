@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="account_invoice_line_cancel_reason_view" model="ir.ui.view">
+            <field name="name">account.move.custom</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position='after'>
+                    <field name="credit_reason_id" readonly="1" column_invisible="parent.move_type not in ('out_refund')"/>
+                </xpath>
+                <xpath expr="//div[@class='oe_button_box']" position="inside">
+                    <field name="reversal_move_id" invisible="1" />
+                    <button name="action_open_credit_note" type="object" class="oe_stat_button"
+                        icon="fa-dollar" invisible="credit_note_count == 0">
+                        <field name="credit_note_count" widget="statinfo" string="Credit Notes" />
+                    </button>
+                </xpath>
+            </field>
+    </record>
+    </data>
+</odoo>

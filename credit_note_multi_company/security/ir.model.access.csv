@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_account_refund_reason,account.refund.reason,model_account_refund_reason,account.group_account_manager,1,1,1,1
+access_account_move_reversal_line,account.move.reversal.line,model_account_move_reversal_line,account.group_account_manager,1,1,1,1
