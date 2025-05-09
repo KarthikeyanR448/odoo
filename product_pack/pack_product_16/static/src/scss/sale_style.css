@@ -1,0 +1,45 @@
+
+div.disable-shadow-cursor table.o_list_table.o_list_table_ungrouped i.fa-angle-down {
+	display: none !important;
+}
+
+div.disable-shadow-cursor table.o_list_table.o_list_table_ungrouped i.fa-angle-up {
+	display: none !important;
+}
+
+div.disable-shadow-cursor table.o_list_table.o_list_table_ungrouped th {
+	box-shadow: unset;
+	cursor: default !important;
+}
+
+.o_is_pack_hide{
+    display: none !important;
+}
+
+tr:has(> td.o_is_pack_hide)   .o_list_record_remove {
+    display: none !important;
+ }
+
+.o_add_pack_control{
+    color: #01575b !important;
+}
+
+tr:has(> td.o_is_pack_night_mode)   .o_list_record_remove{
+    background-color: rgb(70, 70, 70) !important;
+    color: white !important;
+}
+
+.o_is_pack_night_mode {
+    background-color: rgb(70, 70, 70) !important;
+    color: white !important;
+}
+
+tr.o_is_pack {
+    background-color: rgb(220, 220, 220) !important;
+}
+
+.o_add_pack_control_dark_mode{
+    color: #00DAC5 !important;
+}
+
+

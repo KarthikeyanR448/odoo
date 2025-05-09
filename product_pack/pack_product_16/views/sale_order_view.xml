@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+             <xpath expr="//field[@name='order_line']/tree/field[@name='sequence']" position="after">
+                 <field name="is_pack" invisible="1"/>
+                <button name="sub_product_btn" title="visible" class="fa fa-eye" type="object" width="20px" attrs="{'invisible': ['|',('is_pack','=', False),('pack_closed','=', False)]}"/>
+                <button name="sub_product_btn" title="visible" class="fa fa-eye-slash" type="object" width="20px" attrs="{'invisible': ['|',('is_pack','=', False),('pack_closed','=', True)]}"/>
+                <field name="hide_product" invisible="1"/>
+                <field name="pack_closed" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//form/header//button[@name='action_draft']" position="after">
+                <field name="product_sequence" invisible="1"/>
+                <field name="sub_product_compute" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree/control/create[@name='add_product_control']" position='before'>
+                <button name="%(action_product_pack_wizard)d" type="action" string="Add product pack" class="o_add_pack_control" attrs="{'invisible': [('state', '!=', 'draft')]}" context="{'default_sale_or_template': parent.id, 'default_form_model': 'sale.order' }"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="product_pack_action" model="ir.actions.act_window">
+            <field name="name">Product Pack</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="domain">[('is_pack','=',True)]</field>
+            <field name="context">{'default_is_pack' : True}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no product pack to show...!
+                </p>
+            </field>
+        </record>
+
+        <record id="product_pack_filter" model="ir.ui.view">
+            <field name="name">product.template.search.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <filter string="Is a Pack" name="Is a Pack" domain="[('is_pack','=',True)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem id="menu_pack_product" name="Product Pack" parent="sale.product_menu_catalog"
+                  sequence="30" action="product_pack_action"/>
+</odoo>
