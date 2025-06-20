@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_stock_picking_inherit" model="ir.ui.view">
+        <field name="name">stock picking view inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(pos_pricing.action_lot_pricing_wizard)d" string="Calculate Price" type="action" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_lot_inherit" model="ir.ui.view">
+        <field name="name">stock lot inherit</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='main_group']/group[2]" position="inside">
+                <field name="sale_price" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_inherit" model="ir.ui.view">
+        <field name="name">stock move line inherit</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='quantity']" position="after">
+                <field name="cost_price" />
+                <field name="margin_percent" />
+                <field name="sale_price" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_move_form_inherit" model="ir.ui.view">
+        <field name="name">stock move form inherit</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_stock_move_operations"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[2]" position="inside">
+                <field name="product_pricelist_id" />
+                <button name="calculate_price" type="object" string="Calculate Price" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

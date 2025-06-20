@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        
+        <record id="lot_pricing_form" model="ir.ui.view">
+            <field name="name">Generate Lot Numbers</field>
+            <field name="model">lot.pricing.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="product_pricelist_id" />
+                        </group>
+                        <group/>
+                    </group>
+                    <footer>
+                        <button name="generate_lot" string="Generate" type="object"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_lot_pricing_wizard" model="ir.actions.act_window">
+            <field name="name">Generate Lot Numbers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">lot.pricing.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

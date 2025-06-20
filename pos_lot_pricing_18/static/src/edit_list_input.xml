@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_pricing.EditListInputInherit" t-inherit="point_of_sale.EditListInput" t-inherit-mode="extension">
+        <xpath expr="//div/input" position="replace">
+            <input
+                type="text"
+                placeholder="Serial/Lot Number"
+                t-att-readOnly="!props.customInput"
+                t-att-value="DisplayValue()"
+                class="popup-input list-line-input form-control form-control-lg w-75 mx-auto"
+                t-att-class="{'is-invalid': props.hasInvalidValue}"
+                t-on-input="onInput"
+                t-on-keyup="onKeyup"
+                t-on-keydown="onKeydown"
+                t-on-focus="onFocus"
+                t-on-blur="onBlur"
+                t-on-click="onClick" />
+        </xpath>
+    </t>
+</templates>
