@@ -1,0 +1,82 @@
+.o_home_menu {
+    background: radial-gradient(circle at center, #2c3144 0%, #11141d 100%);
+    z-index: 1050;
+    position: fixed;
+    top: 46px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.o_home_menu .o_app {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.o_home_menu .o_app:hover {
+    transform: translateY(-5px) scale(0.95) rotate(3deg);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.o_home_menu .o_app_icon {
+    width: 64px;
+    height: 64px;
+    padding: 0;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.o_home_menu .o_app:hover .o_app_icon {
+    transform: rotate(3deg);
+    zoom: 1;
+}
+
+.o_home_menu .o_caption {
+    color: #e0e0e0;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+// .o_home_menu .o_app:hover .o_caption {
+//     color: #ffffff;
+// }
+
+/* Custom scrollbar for a cleaner look */
+.o_home_menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.o_home_menu::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.o_home_menu::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.o_app {
+    transform: scale(0.9);
+    transform-origin: center top;
+}

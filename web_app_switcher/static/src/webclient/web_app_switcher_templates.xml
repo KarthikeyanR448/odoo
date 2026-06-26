@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <!-- Include HomeMenu in WebClient -->
+    <t t-inherit="web.WebClient" t-inherit-mode="extension" owl="1">
+        <xpath expr="//ActionContainer" position="after">
+            <HomeMenu t-if="state.homeMenuVisible" onAppClick="(app) => this.toggleHomeMenu(false)"/>
+        </xpath>
+    </t>
+
+    <!-- Modify NavBar AppsMenu to toggle HomeMenu -->
+    <t t-inherit="web.NavBar.AppsMenu" t-inherit-mode="extension" owl="1">
+        <!-- Replace Dropdown with a simple button to avoid showing the dropdown menu -->
+        <xpath expr="." position="replace">
+            <div t-if="!isScopedApp" class="o_navbar_apps_menu">
+                <a href="/odoo"
+                class="o_nav_entry btn p-2"
+                data-hotkey="h"
+                title="Home Menu"
+                t-on-click.stop.prevent="_onAppsMenuClickHome">
+                    <i style="font-size:1.3rem" class="fa fa-home"/>
+                </a>
+            </div>
+        </xpath>
+    </t>
+    <!-- Hide App Brand in NavBar -->
+    <t t-inherit="web.NavBar" t-inherit-mode="extension" owl="1">
+        <xpath expr="//DropdownItem[contains(@class, 'o_menu_brand')]" position="attributes">
+            <attribute name="t-if">!env.isSmall and currentApp and !state.homeMenuVisible</attribute>
+        </xpath>
+    </t>
+</templates>

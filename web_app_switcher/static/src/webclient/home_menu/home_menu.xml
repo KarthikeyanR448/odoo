@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="web_enterprise.HomeMenu">
+        <div class="o_home_menu h-90 overflow-auto">
+            <div class="container">
+                <div class="row g-4 justify-content-left py-5">
+                    <t t-foreach="state.displayedApps" t-as="app" t-key="app.id">
+                        <div class="col-4 col-sm-3 col-md-2 pt-3">
+                            <a class="o_app text-center text-decoration-none d-flex flex-column align-items-center justify-content-center rounded-4 pt-3 h-100"
+                            t-att-href="app.href || '#'"
+                            t-on-click.prevent="() => this._onAppClick(app)"
+                            t-att-data-menu-xmlid="app.xmlid"
+                            style="
+                                    height: 160px;
+                                    width: 100%;
+                                    transform: scale(0.9);
+                                    transform-origin: center;
+                            ">
+
+                                <img t-if="app.webIconData"
+                                    class="o_app_icon rounded-4 mb-2 shadow-lg"
+                                    t-att-src="app.webIconData"
+                                    t-att-alt="app.name"
+                                    style="width: 60px; height: 60px; object-fit: contain;" />
+
+                                <div t-else=""
+                                    class="o_app_icon rounded-4 mb-2 shadow-lg d-flex align-items-center justify-content-center bg-secondary text-white"
+                                    style="width: 60px; height: 60px; font-size: 1.75rem;">
+                                    <i class="fa fa-th-large"/>
+                                </div>
+
+                                <span class="o_caption text-white fw-medium w-100 px-1"
+                                    style="
+                                        font-size: 1rem;
+                                        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+                                        overflow: hidden;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 2;
+                                        -webkit-box-orient: vertical;
+                                        line-height: 1.2;
+                                        min-height: 2.2em;
+                                    ">
+                                    <t t-esc="app.name"/>
+                                </span>
+
+                            </a>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
